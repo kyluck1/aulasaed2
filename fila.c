@@ -9,11 +9,13 @@ struct fila{
     int inicio;
     int fim;
     int ocupacao;
+    short e->infinita;
 };
 
 t_fila* criar_fila(int tamanho){
     t_fila* f = malloc(sizeof(t_fila));
-    f->tamanho = tamanho;
+    f->e_infinita = (tamanho<=0?1:0);
+    f->tamanho = (tamanho<=0?1:tamanho);
     f->inicio = 0;
     f->fim = 0;
     f->ocupacao = 0
@@ -25,6 +27,11 @@ t_fila* criar_fila(int tamanho){
 
 void enfileirar(t_fila* f, void* elem){
     
+    if(f->e_infinita && (f->ocupacao == f->tamanho)){
+        f->tamanho = f->tamanho*2;
+        f->elems = realloc(f->elems, sizeof(void* )*f->tamanho);
+    } 
+
     if(f->ocupacao < f->tamanho){
         f->elems[f->fim] = elem;
         f->fim = (f->fim+1)%f->tamanho;
