@@ -1,15 +1,16 @@
 #include "stdlib.h"
 #include "stdio.h"
 
-typedef struct heap t_heap;#include "stdlib.h"
-#include "stdio.h"
 
+
+typedef int (*tcompararheap)(void* elemento_no_heap, void* novo_elemento);
 typedef struct heap t_heap;
 struct heap{
     void* *elem;
     int ocupacao;
     int tamanho;
     int e_infinito;
+    tcompararheap *comparar;
 };
 
 t_heap* criar_heap(int tam){
@@ -28,18 +29,25 @@ static void trocar(void* elem[], int i, int j){
     elem[j] = aux;
 }
 
-static void desce_no_heap(void* elem[], int ocupa, int k){
-    int imaior = k;
-    if ((2*k+1<ocupa) && (elem[imaior]<elem[2*k+1])){
-        imaior = 2*k+1;
-    }
-    if ((2*k+2<ocupa) && (elem[imaior]<elem[2*k+2])){
-        imaior = 2*k+2;
-    }
-    if (imaior!=k){
-        trocar(elem, k, imaior);
-        desce_no_heap(elem,ocupa,imaior);
-    }
+static void desce_no_heap(t_heap* h, int k){
+    int imaior;
+    int sai = 0;
+    while(sai==0){
+        imaior = k;
+        if ((2*k+1<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+1]))){
+            imaior = 2*k+1;
+        }
+        if ((2*k+2<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+2]))){
+            imaior = 2*k+2;
+        }
+        if (imaior!=k){
+            trocar(h->elem, k, imaior);
+            k=imaior;
+            //desce_no_heap(h->elem,ocupa,imaior);
+        }else{
+            sai = 1;
+        }
+    } 
 
 }
 
