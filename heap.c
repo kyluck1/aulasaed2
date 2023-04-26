@@ -30,23 +30,21 @@ static void trocar(void* elem[], int i, int j){
 }
 
 static void desce_no_heap(t_heap* h, int k){
-    int imaior;
+    int imaior = 0;
     int sai = 0;
-    while(sai==0){
-        imaior = k;
-        if ((2*k+1<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+1]))){
-            imaior = 2*k+1;
-        }
-        if ((2*k+2<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+2]))){
-            imaior = 2*k+2;
-        }
-        if (imaior!=k){
-            trocar(h->elem, k, imaior);
-            k=imaior;
-            //desce_no_heap(h->elem,ocupa,imaior);
-        }else{
-            sai = 1;
-        }
+
+        
+    if ((2*k+1<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+1]))){
+        imaior = 2*k+1;
+    }
+    if ((2*k+2<h->ocupacao) && (h->comparar(h->elem[imaior],h->elem[2*k+2]))){
+        imaior = 2*k+2;
+    }
+    if (imaior!=k){
+        trocar(h->elem, k, imaior);
+        k=imaior;
+        //desce_no_heap(h->elem,ocupa,imaior);
+    }
     } 
 
 }
