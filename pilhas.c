@@ -1,12 +1,42 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "listase.h"
-#include "pilha.h"
+#include "pilhas.h"
 
 struct pilha{
     t_lse *elems; //container de elems
     int max_altura;
-    int altura;
+    int altura;#include "stdlib.h"
+2
+#include "stdio.h"
+3
+#include "listase.h"
+4
+​
+5
+typedef struct pilha t_pilha;
+6
+​
+7
+t_pilha* criar_pilha(int max_altura;
+8
+​
+9
+short empilhar(t_pilha*p, void* elem);
+10
+​
+11
+void* desempilhar(t_pilha* p);
+12
+​
+13
+void* topo_pilha(t_pilha *p);
+14
+​
+15
+int altura_pilha(t_pilha* p);
+16
+
 };
 
 t_pilha* criar_pilha(int max_altura){
