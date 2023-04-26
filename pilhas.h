@@ -1,15 +1,6 @@
-#include "stdlib.h"
-#include "stdio.h"
-#include "listase.h"
-
 typedef struct pilha t_pilha;
-
-t_pilha* criar_pilha(int max_altura;
-
-short empilhar(t_pilha*p, void* elem);
-
+t_pilha* criar_pilha(int max_altura);
+short empilhar(t_pilha* p, void* elem);
 void* desempilhar(t_pilha* p);
-
 void* topo_pilha(t_pilha *p);
-
 int altura_pilha(t_pilha* p);
